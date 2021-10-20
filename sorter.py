@@ -3,10 +3,18 @@
 # Input is a file named Sort Me.txt and must be located in the same directory as this file
 
 import os
+import argparse
 
 #set up the path the file is located in. not sure how to do this with stdin so I used os
 __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__)))
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-r', action='store_true')
+args = parser.parse_args()
+
+rtrue = args.r
+
 
 #make the list to hold the names
 lines = []
@@ -28,5 +36,9 @@ lines.sort()
 lines = sorted(lines, key=len)
 
 #print the list
-for x in lines:
-    print(x)
+if(rtrue == True):
+    for x in reversed(lines):
+        print(x)
+else:
+    for x in lines:
+        print(x)
